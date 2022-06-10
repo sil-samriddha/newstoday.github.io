@@ -13,7 +13,7 @@ const newsdetails = document.getElementById("newsdetails");
 
 var newsDataArr = [];
 
-const key = "9e9b7d1c2042476586e5d3584b6e7cab";
+const key = "fce439fa9fed46748e51e2640efd0e20";
 const headlines = "https://newsapi.org/v2/top-headlines?country=in&apiKey=";
 const briefs = "https://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=";
 const business = "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=";
