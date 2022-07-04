@@ -1,3 +1,4 @@
+const HomeBtn = document.getElementById("home");
 const briefBtn = document.getElementById("briefs");
 const businessBtn = document.getElementById("business");
 const sportsBtn = document.getElementById("sports");
@@ -13,21 +14,25 @@ const newsdetails = document.getElementById("newsdetails");
 
 var newsDataArr = [];
 
-const key = "fce439fa9fed46748e51e2640efd0e20";
-const headlines = "https://newsapi.org/v2/top-headlines?country=in&apiKey=";
-const briefs = "https://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=";
-const business = "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=";
-const sports = "https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=";
-const entertainment = "https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=";
-const tech = "https://newsapi.org/v2/top-headlines?country=in&category=technology&pageSize=8&apiKey=";
-const science = "https://newsapi.org/v2/top-headlines?country=in&category=science&pageSize=8&apiKey=";
-const health = "https://newsapi.org/v2/top-headlines?country=in&category=health&pageSize=8&apiKey=";
+const headlines = "https://saurav.tech/NewsAPI/everything/cnn.json";
+const briefs = "https://saurav.tech/NewsAPI/top-headlines/category/general/in.json";
+const business = "https://saurav.tech/NewsAPI/top-headlines/category/business/in.json";
+const sports = "https://saurav.tech/NewsAPI/top-headlines/category/sports/in.json";
+const entertainment = "https://saurav.tech/NewsAPI/top-headlines/category/entertainment/in.json";
+const tech = "https://saurav.tech/NewsAPI/top-headlines/category/technology/in.json";
+const science = "https://saurav.tech/NewsAPI/top-headlines/category/science/in.json";
+const health = "https://saurav.tech/NewsAPI/top-headlines/category/health/in.json";
 const search = "https://newsapi.org/v2/everything?q=";
+const key = "fce439fa9fed46748e51e2640efd0e20"
 
 window.onload = function() {
     newsType.innerHTML="<h4>Headlines <span class = text-warning>Today</span></h4>";
     fetchHeadlines();
 };
+
+HomeBtn.addEventListener("click",function(){
+    window.onload();
+});
 
 
 briefBtn.addEventListener("click",function(){
@@ -70,7 +75,7 @@ searchBtn.addEventListener("click",function(){
 });
 
 const fetchHeadlines = async () => {
-    const response = await fetch(headlines+key);
+    const response = await fetch(headlines);
     newsDataArr = [];
     if(response.status >=200 && response.status < 300) {
         const myJson = await response.json();
@@ -86,7 +91,7 @@ const fetchHeadlines = async () => {
 
 
 const fetchGeneralNews = async () => {
-    const response = await fetch(briefs+key);
+    const response = await fetch(briefs);
     newsDataArr = [];
     if(response.status >=200 && response.status < 300) {
         const myJson = await response.json();
@@ -101,7 +106,7 @@ const fetchGeneralNews = async () => {
 }
 
 const fetchBusinessNews = async () => {
-    const response = await fetch(business+key);
+    const response = await fetch(business);
     newsDataArr = [];
     if(response.status >=200 && response.status < 300) {
         const myJson = await response.json();
@@ -116,7 +121,7 @@ const fetchBusinessNews = async () => {
 }
 
 const fetchEntertainmentNews = async () => {
-    const response = await fetch(entertainment+key);
+    const response = await fetch(entertainment);
     newsDataArr = [];
     if(response.status >=200 && response.status < 300) {
         const myJson = await response.json();
@@ -132,7 +137,7 @@ const fetchEntertainmentNews = async () => {
 }
 
 const fetchSportsNews = async () => {
-    const response = await fetch(sports+key);
+    const response = await fetch(sports);
     newsDataArr = [];
     if(response.status >=200 && response.status < 300) {
         const myJson = await response.json();
@@ -147,7 +152,7 @@ const fetchSportsNews = async () => {
 }
 
 const fetchTechnologyNews = async () => {
-    const response = await fetch(tech+key);
+    const response = await fetch(tech);
     newsDataArr = [];
     if(response.status >=200 && response.status < 300) {
         const myJson = await response.json();
@@ -181,7 +186,7 @@ const fetchQueryNews = async () => {
 }
 
 const fetchScienceNews = async () => {
-    const response = await fetch(science+key);
+    const response = await fetch(science);
     newsDataArr = [];
     if(response.status >=200 && response.status < 300) {
         const myJson = await response.json();
@@ -196,7 +201,7 @@ const fetchScienceNews = async () => {
 }
 
 const fetchHealthNews = async () => {
-    const response = await fetch(health+key);
+    const response = await fetch(health);
     newsDataArr = [];
     if(response.status >=200 && response.status < 300) {
         const myJson = await response.json();
@@ -225,7 +230,7 @@ function displayNews() {
         card.className = "p-2";
 
         var image = document.createElement('img');
-        image.setAttribute("height","matchparent");
+        image.setAttribute("height","auto");
         image.setAttribute("width","100%");
         image.src=news.urlToImage;
 
