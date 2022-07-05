@@ -30,6 +30,7 @@ window.onload = function() {
     fetchHeadlines();
 };
 
+
 HomeBtn.addEventListener("click",function(){
     window.onload();
 });
