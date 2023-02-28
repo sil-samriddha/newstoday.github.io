@@ -26,7 +26,7 @@ const search = "https://newsapi.org/v2/everything?q=";
 const key = "fce439fa9fed46748e51e2640efd0e20"
 
 window.onload = function() {
-    newsType.innerHTML="<h4>Headlines <span class = text-warning>Today</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Headlines Today</span></h4>";
     fetchHeadlines();
 };
 
@@ -37,43 +37,95 @@ HomeBtn.addEventListener("click",function(){
 
 
 briefBtn.addEventListener("click",function(){
-    newsType.innerHTML="<h4>Briefs <span class = text-warning>Today</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Briefs News</span></h4>";
     fetchGeneralNews();
 });
 
 businessBtn.addEventListener("click",function(){
-    newsType.innerHTML="<h4>Business <span class = text-warning>Today</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Business News</span></h4>";
     fetchBusinessNews();
 });
 
 sportsBtn.addEventListener("click",function(){
-    newsType.innerHTML="<h4>Sports <span class = text-warning>Today</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Sports</span></h4>";
     fetchSportsNews();
 });
 
 entertainmentBtn.addEventListener("click",function(){
-    newsType.innerHTML="<h4>Entertainment <span class = text-warning>Today</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Entertainment</span></h4>";
     fetchEntertainmentNews();
 });
 
 technologyBtn.addEventListener("click",function(){
-    newsType.innerHTML="<h4>Technology <span class = text-warning>Today</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Technology</span></h4>";
     fetchTechnologyNews();
 });
 
 healthBtn.addEventListener("click",function(){
-    newsType.innerHTML="<h4>Health & Fitness <span class = text-warning>Today</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Health & Fitness</span></h4>";
     fetchHealthNews();
 });
 scienceBtn.addEventListener("click",function(){
-    newsType.innerHTML="<h4>Science <span class = text-warning>Today</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Science News</span></h4>";
     fetchScienceNews();
 });
 
 searchBtn.addEventListener("click",function(){
-    newsType.innerHTML="<h4>Search result : <span class = text-warning>"+newsQuery.value+"</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Search result : "+newsQuery.value+"</span></h4>";
     fetchQueryNews();
 });
+
+let weather = {
+    apiKey: "aaa6c109c501ce077df659dfb4ff576c",
+    fetchWeather: function (city) {
+      fetch(
+        "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + this.apiKey
+      )
+        .then((response) => {
+          if (!response.ok) {
+            alert("No weather found.");
+            throw new Error("No weather found.");
+          }
+          return response.json();
+        })
+        .then((data) => this.displayWeather(data));
+    },
+    displayWeather: function (data) {
+      const { name } = data;
+      const { icon, description } = data.weather[0];
+      const { temp, humidity } = data.main;
+      const { speed } = data.wind;
+      document.querySelector(".city").innerText = "Weather in " + name;
+      document.querySelector(".icon").src =
+        "https://openweathermap.org/img/wn/" + icon + ".png";
+      document.querySelector(".description").innerText = description;
+      document.querySelector(".temp").innerText = temp + "°C";
+      document.querySelector(".humidity").innerText =
+        "Humidity: " + humidity + "%";
+      document.querySelector(".wind").innerText =
+        "Wind speed: " + speed + " km/h";
+      document.querySelector(".weather").classList.remove("loading");
+      document.body.style.backgroundImage =
+        "url('https://source.unsplash.com/1600x900/?" + name + "')";
+    },
+    search: function () {
+      this.fetchWeather(document.querySelector(".search-bar").value);
+    },
+  };
+  
+  document.querySelector(".search button").addEventListener("click", function () {
+    weather.search();
+  });
+  
+  document
+    .querySelector(".search-bar")
+    .addEventListener("keyup", function (event) {
+      if (event.key == "Enter") {
+        weather.search();
+      }
+    });
+  
+  weather.fetchWeather("Bhubaneswar");
 
 const fetchHeadlines = async () => {
     const response = await fetch(headlines);
@@ -83,7 +135,7 @@ const fetchHeadlines = async () => {
         newsDataArr = myJson.articles;
     } else {
         console.log(response.status, response.statusText);
-        newsdetails.innerHTML = "<h5>No data found.</h5>"
+        newsdetails.innerHTML = "<h5>No data found</h5>"
         return;
     }
 
@@ -99,7 +151,7 @@ const fetchGeneralNews = async () => {
         newsDataArr = myJson.articles;
     } else {
         console.log(response.status, response.statusText);
-        newsdetails.innerHTML = "<h5>No data found.</h5>"
+        newsdetails.innerHTML = "<h5>No data found</h5>"
         return;
     }
 
@@ -114,7 +166,7 @@ const fetchBusinessNews = async () => {
         newsDataArr = myJson.articles;
     } else {
         console.log(response.status, response.statusText);
-        newsdetails.innerHTML = "<h5>No data found.</h5>"
+        newsdetails.innerHTML = "<h5>No data found</h5>"
         return;
     }
 
@@ -130,7 +182,7 @@ const fetchEntertainmentNews = async () => {
         newsDataArr = myJson.articles;
     } else {
         console.log(response.status, response.statusText);
-        newsdetails.innerHTML = "<h5>No data found.</h5>"
+        newsdetails.innerHTML = "<h5>No data found</h5>"
         return;
     }
 
@@ -145,7 +197,7 @@ const fetchSportsNews = async () => {
         newsDataArr = myJson.articles;
     } else {
         console.log(response.status, response.statusText);
-        newsdetails.innerHTML = "<h5>No data found.</h5>"
+        newsdetails.innerHTML = "<h5>No data found</h5>"
         return;
     }
 
@@ -160,7 +212,7 @@ const fetchTechnologyNews = async () => {
         newsDataArr = myJson.articles;
     } else {
         console.log(response.status, response.statusText);
-        newsdetails.innerHTML = "<h5>No data found.</h5>"
+        newsdetails.innerHTML = "<h5>No data found</h5>"
         return;
     }
 
@@ -179,7 +231,7 @@ const fetchQueryNews = async () => {
         newsDataArr = myJson.articles;
     } else {
         console.log(response.status, response.statusText);
-        newsdetails.innerHTML = "<h5>No data found.</h5>"
+        newsdetails.innerHTML = "<h5>Works only on localhost</h5>"
         return;
     }
 
