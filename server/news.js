@@ -27,7 +27,7 @@ const search = "https://newsapi.org/v2/everything?q=";
 const key = "fce439fa9fed46748e51e2640efd0e20"
 
 window.onload = function() {
-    newsType.innerHTML="<h4><span class = text-danger>Headlines Today</span></h4>";
+    newsType.innerHTML="<h4><span class = text-warning>Headlines Today</span></h4>";
     fetchHeadlines();
 };
 
