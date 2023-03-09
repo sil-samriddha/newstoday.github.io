@@ -8,9 +8,12 @@ h5
 {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 #newsType{
   background: radial-gradient(circle at 34.2% 44.3%, rgb(233, 79, 79) 6.5%, rgb(111, 34, 142) 100.2%);
   border-radius: 10px;
+  text-align: center;
+  height: 40px;
 }
 .animated{
   font-weight: 1000;
